@@ -75,19 +75,24 @@
         </section>
 
         <!-- tree section -->
-        <!-- <section class="w-11/12 mx-auto mb-6 md:mb-[100px]">
-            <h2 class="text-center font-bold md:text-5xl">Choose Your Trees</h2>
+        <section class="w-11/12 mx-auto mb-6 md:mb-[100px]">
+            <h2 class="text-center font-bold md:text-5xl mb-6">Choose Your Trees</h2>
             <div class="grid md:grid-cols-12 gap-6">
+                <!-- category section -->
                 <div class="col-span-2  ">
                     <h2 class="mb-5 font-bold text-xl">Categories</h2>
-                    <div id="category-level">All Trees</div>
+                    <div id="category-container" class="text-center">
+                        <!-- every category name will be uploaded from index.js-26  -->
+                    </div>
                 </div>
-                <div id="cart-container" class="col-span-8 bg-white grid grid-cols-1 md:grid-cols-3">
-                    <div class="h-[300px] bg-red-500">cart</div>
+                <!-- plants container -->
+                <div id="plant-container" class="col-span-8 gap-5  grid grid-cols-1 md:grid-cols-3">
+                    <!-- every plant card will be added dynamically -->
                 </div>
-                <div class="col-span-2  bg-white">Add to card</div>
+
+                <div>Add to cart</div>
             </div>
-        </section> -->
+        </section>
         <!-- Campaign section -->
         <section class="max-w-[1090px] mx-auto mb-6 md:mb-[100px]">
             <h2 class="text-center font-bold text-2xl md:text-4xl mb-8">About the Campaign</h2>
@@ -150,8 +155,9 @@
     </main>
     <footer class="bg-[#14532D] py-4 text-center">
         <p class="text-white">© 2025 Green Earth. All Rights Reserved.</p>
-
     </footer>
+
+    <script src="./script/index.js"></script>
 </body>
 
 </html>
