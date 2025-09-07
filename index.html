@@ -78,13 +78,19 @@
         <section class="w-11/12 mx-auto mb-6 md:mb-[100px]">
             <h2 class="text-center font-bold md:text-5xl mb-6">Choose Your Trees</h2>
             <div class="grid md:grid-cols-12 gap-6">
+
                 <!-- category section -->
-                <div class="col-span-2  ">
+                <div class="col-span-2">
                     <h2 class="mb-5 font-bold text-xl">Categories</h2>
-                    <div id="category-container" class="text-center">
-                        <!-- every category name will be uploaded from index.js-26  -->
+                    <div class="text-center">
+                        <button id="all-category-btn" onclick="loadPlants()" class="p-2 mb-2 active w-full">All
+                            Trees</button>
+                        <div id="category-container" class="md:text-center">
+                            <!-- every category name will be uploaded from index.js-26  -->
+                        </div>
                     </div>
                 </div>
+
                 <!-- plants container -->
                 <div id="plant-container" class="col-span-8 gap-5  grid grid-cols-1 md:grid-cols-3">
                     <!-- every plant card will be added dynamically from index.js-65 -->

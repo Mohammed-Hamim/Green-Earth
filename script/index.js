@@ -10,9 +10,10 @@ const loadCategories = () => {
 // function for displaying categories
 const displayCategories = (categories) => {
 
-    // get the category container
+    // get the category container 
     const categoryContainer = document.getElementById("category-container");
     categoryContainer.innerHTML = "";
+
     // get every category
     categories.forEach(category => {
 
@@ -25,6 +26,8 @@ const displayCategories = (categories) => {
 
         // append to the categoryContainer
         categoryContainer.appendChild(categoryName);
+
+
     });
 }
 
@@ -38,6 +41,19 @@ const loadPlants = () => {
     fetch(plantsUrl)
         .then(res => res.json())
         .then(data => displayPlants(data.plants));
+
+    // removing active while clicking All Trees btn
+    const categoryButton = document.querySelectorAll(".category-btn");
+    // select each button
+    categoryButton.forEach(btn => {
+        btn.classList.remove("active")
+    })
+
+    //Adding active on all tress btn when clicking on it
+    const allCategoryBtn = document.querySelector("#all-category-btn");
+    allCategoryBtn.classList.add("active");
+
+
 }
 
 
@@ -81,6 +97,7 @@ const loadByCategory = (id) => {
             removeActive()// remove active class
 
             // select clicked button
+
             const buttonNum = document.querySelector(`#button-${id}`);
             buttonNum.classList.add("active");// add active class
             displayByCategory(data.plants)
@@ -119,6 +136,10 @@ const displayByCategory = (plants) => {
 const removeActive = () => {
     // get all buttons
     const categoryButton = document.querySelectorAll(".category-btn");
+    // get all trees button
+    const allCategoryBtn = document.querySelector("#all-category-btn");
+    // remove active from it while clicking on other category buttons
+    allCategoryBtn.classList.remove("active");
 
     // select each button
     categoryButton.forEach(btn => {
