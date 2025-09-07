@@ -68,11 +68,11 @@ const displayPlants = (plants) => {
         const plantCard = document.createElement("div");
         plantCard.innerHTML = `
          <div class="bg-white p-4 space-y-4 rounded-lg  ">
-                        <img class="max-h-[190px] w-full rounded-lg " src="${plant.image ? plant.image : "No image found"}" alt="">
-                        <h2 class="text-bold text-xl ">${plant.name ? plant.name : "No name found"}</h2>
-                        <p>${plant.description ? plant.description : "No description found"}</p>
+                        <img class="h-[190px] w-full rounded-lg " src="${plant.image ? plant.image : "No image found"}" alt="">
+                        <h2 onclick="loadPlantDetails(${plant.id})" class="text-bold text-[14px] ">${plant.name ? plant.name : "No name found"}</h2>
+                        <p class="text-[12px]">${plant.description ? plant.description : "No description found"}</p>
                         <div class="flex justify-between items-center">
-                            <p class="bg-[#CFF0DC] p-3 rounded-full text-sm">${plant.category ? plant.category : "No category found"}</p>
+                            <p class="bg-[#CFF0DC] p-3 rounded-full text-[12px]">${plant.category ? plant.category : "No category found"}</p>
                             <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${plant.price ? plant.price : "Price is not available"}</span></p>
                         </div>
                         <button class="bg-[#15803D] btn rounded-full w-full text-white">Add to Cart</button>
@@ -117,7 +117,7 @@ const displayByCategory = (plants) => {
         plantCard.innerHTML = `
          <div class="bg-white p-4 space-y-4 rounded-lg  ">
                         <img class="max-h-[190px] w-full rounded-lg " src="${plant.image ? plant.image : "No image found"}" alt="">
-                        <h2 class="text-bold text-xl ">${plant.name ? plant.name : "No name found"}</h2>
+                        <h2 onclick="loadPlantDetails(${plant.id})" class="text-bold text-xl ">${plant.name ? plant.name : "No name found"}</h2>
                         <p>${plant.description ? plant.description : "No description found"}</p>
                         <div class="flex justify-between items-center">
                             <p class="bg-[#CFF0DC] p-3 rounded-full text-sm">${plant.category ? plant.category : "No category found"}</p>
@@ -151,3 +151,37 @@ const removeActive = () => {
 
 
 
+/*************Functionality of showing plant showing modal stats here****************/
+
+//function for loading plant details
+const loadPlantDetails = (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`
+
+    fetch(url)
+        .then(res => res.json())
+        .then(details => displayPlantDetails(details.plants))
+}
+
+// function for displaying plant details
+
+const displayPlantDetails = (plants) => {
+    //  get the details container 
+    const cartDetails = document.getElementById('cart-details');
+    // create elements
+    cartDetails.innerHTML = `    
+                     <h2 class="text-xl font-bold">${plants.name}</h2>
+                        <img class="w-full h-[180px] rounded-lg" src="${plants.image}" alt="">
+                        <p class="">${plants.category}</p>
+                        <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${plants.price}</span></p>
+                        <p class="text-sm">${plants.description}</p>
+                        <div class="modal-action">
+                            <form method="dialog">
+                                <!-- if there is a button in form, it will close the modal -->
+                                <button class="btn">Close</button>
+                            </form>
+                        </div>
+    `
+    document.getElementById('my_modal_5').showModal();
+}
+
+/*************Functionality of showing plant showing modal ends here****************/

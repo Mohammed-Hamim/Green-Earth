@@ -91,14 +91,42 @@
                     </div>
                 </div>
 
+
                 <!-- plants container -->
                 <div id="plant-container" class="col-span-8 gap-5  grid grid-cols-1 md:grid-cols-3">
                     <!-- every plant card will be added dynamically from index.js-65 -->
                 </div>
 
+                <!--show the modal when click on the cart title -->
+                <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+                <dialog id="my_modal_5" class="modal modal-middle sm:modal-middle">
+                    <div id="cart-details" class="modal-box space-y-4">
+                        <h2 class="text-xl font-bold">Name</h2>
+                        <img class="w-full" src="" alt="">
+                        <p class="">category</p>
+                        <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>500</span></p>
+                        <p class="text-sm">description</p>
+                        <div class="modal-action">
+                            <form method="dialog">
+                                <!-- if there is a button in form, it will close the modal -->
+                                <button class="btn">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
+
+
+
+
                 <div>Add to cart</div>
             </div>
         </section>
+
+
+
+
+
+
         <!-- Campaign section -->
         <section class="max-w-[1090px] mx-auto mb-6 md:mb-[100px]">
             <h2 class="text-center font-bold text-2xl md:text-4xl mb-8">About the Campaign</h2>
