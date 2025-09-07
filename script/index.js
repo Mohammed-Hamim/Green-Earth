@@ -21,7 +21,7 @@ const displayCategories = (categories) => {
         const categoryName = document.createElement('div');
 
         categoryName.innerHTML = `
-        <button id="button-${category.id}" onclick="loadByCategory(${category.id})" class="category-btn py-2 mb-2 w-full">${category.category_name}</button>
+        <button id="button-${category.id}" onclick="loadByCategory(${category.id})" class="category-btn p-3 md:p-0 md:py-2 mb-2 w-full">${category.category_name}</button>
         `;
 
         // append to the categoryContainer
@@ -40,7 +40,9 @@ const loadPlants = () => {
     const plantsUrl = "https://openapi.programming-hero.com/api/plants";
     fetch(plantsUrl)
         .then(res => res.json())
-        .then(data => displayPlants(data.plants));
+        .then(data => {
+            displayPlants(data.plants);
+        });
 
     // removing active while clicking All Trees btn
     const categoryButton = document.querySelectorAll(".category-btn");
@@ -59,6 +61,7 @@ const loadPlants = () => {
 
 // function for displaying all plants
 const displayPlants = (plants) => {
+    // displayAddToCart(plants)
     // get the plant container and empty it
     const plantContainer = document.getElementById("plant-container");
     plantContainer.innerHTML = "";
@@ -75,17 +78,17 @@ const displayPlants = (plants) => {
                             <p class="bg-[#CFF0DC] p-3 rounded-full text-[12px]">${plant.category ? plant.category : "No category found"}</p>
                             <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${plant.price ? plant.price : "Price is not available"}</span></p>
                         </div>
-                        <button class="bg-[#15803D] btn rounded-full w-full text-white">Add to Cart</button>
+                        <button onclick="loadCartDetails(${plant.id})"  class="cart-btn bg-[#15803D] btn rounded-full w-full text-white">Add to Cart</button>
                     </div>
         `;
         // append to the plant card container 
         plantContainer.appendChild(plantCard);
-
     })
+
+
 }
 loadPlants();
 /*************Functionality of cart container ends here****************/
-
 
 /*************Functionality of showing plant card according to their category starts here****************/
 // function for loading plants by category
@@ -123,7 +126,7 @@ const displayByCategory = (plants) => {
                             <p class="bg-[#CFF0DC] p-3 rounded-full text-sm">${plant.category ? plant.category : "No category found"}</p>
                             <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${plant.price ? plant.price : "Price is not available"}</span></p>
                         </div>
-                        <button class="bg-[#15803D] btn rounded-full w-full text-white">Add to Cart</button>
+                        <button onclick="loadCartDetails(${plant.id})" class="bg-[#15803D] btn rounded-full w-full text-white">Add to Cart</button>
                     </div>
         `;
         // append to the plant card container 
@@ -183,5 +186,47 @@ const displayPlantDetails = (plants) => {
     `
     document.getElementById('my_modal_5').showModal();
 }
-
 /*************Functionality of showing plant showing modal ends here****************/
+
+
+/*************Functionality of showing add to cart starts here****************/
+
+// 
+
+// const displayAddToCart
+
+// load cart details 
+const loadCartDetails = (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`
+
+    fetch(url)
+        .then(res => res.json())
+        .then(details => displayAddToCart(details.plants))
+}
+
+// function for creating add to cart
+const displayAddToCart = (plants) => {
+    console.log(plants)
+    // get add cart container and empty it
+    const addToCartContainer = document.getElementById('add-to-cart-container');
+    // addToCartContainer.innerHTML = "";
+    console.log(addToCartContainer)
+    alert(`Doy want to add to cart: ${plants.name}`)
+    // create element 
+    const addedCart = document.createElement("div");
+    addedCart.classList.add("flex", "justify-between", "bg-[#CFF0DC]", "rounded-lg", "p-4")
+    console.log(addedCart)
+    addedCart.innerHTML = `
+           <div>
+                                <h2>${plants.name}</h2>
+                                <p>${plants.price}</p>
+                            </div>
+                            <h2 class="font-xl"><i class="fa-solid fa-xmark"></i></h2>
+     `;
+
+    //append
+    addToCartContainer.appendChild(addedCart)
+
+}
+
+

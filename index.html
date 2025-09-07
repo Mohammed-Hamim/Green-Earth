@@ -77,10 +77,10 @@
         <!-- tree section -->
         <section class="w-11/12 mx-auto mb-6 md:mb-[100px]">
             <h2 class="text-center font-bold md:text-5xl mb-6">Choose Your Trees</h2>
-            <div class="grid md:grid-cols-12 gap-6">
+            <div class="md:grid md:grid-cols-12 gap-6 space-y-4">
 
                 <!-- category section -->
-                <div class="col-span-2">
+                <div class="md:col-span-2 mb-4 md:mb-0">
                     <h2 class="mb-5 font-bold text-xl">Categories</h2>
                     <div class="text-center">
                         <button id="all-category-btn" onclick="loadPlants()" class="p-2 mb-2 active w-full">All
@@ -101,24 +101,20 @@
                 <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
                 <dialog id="my_modal_5" class="modal modal-middle sm:modal-middle">
                     <div id="cart-details" class="modal-box space-y-4">
-                        <h2 class="text-xl font-bold">Name</h2>
-                        <img class="w-full" src="" alt="">
-                        <p class="">category</p>
-                        <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>500</span></p>
-                        <p class="text-sm">description</p>
-                        <div class="modal-action">
-                            <form method="dialog">
-                                <!-- if there is a button in form, it will close the modal -->
-                                <button class="btn">Close</button>
-                            </form>
-                        </div>
+                        <!-- load dynamically from index.js-171 -->
                     </div>
-                </dialog>
+                </dialog> <!--modal ends here-->
 
+                <div class="col-span-2 add-cart p-4 bg-white">
+                    <h2>Your Cart</h2>
+                    <div id="add-to-cart-container" class="border-b-2 py-4 space-y-4">
 
-
-
-                <div>Add to cart</div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <h2>Total</h2>
+                        <p>1000</p>
+                    </div>
+                </div>
             </div>
         </section>
 
