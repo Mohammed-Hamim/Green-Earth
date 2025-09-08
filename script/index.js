@@ -73,7 +73,7 @@ const displayPlants = (plants) => {
          <div class="bg-white p-4 space-y-4 rounded-lg  ">
                         <img class="h-[190px] w-full rounded-lg " src="${plant.image ? plant.image : "No image found"}" alt="">
                         <h2 onclick="loadPlantDetails(${plant.id})" class="text-bold text-[14px] ">${plant.name ? plant.name : "No name found"}</h2>
-                        <p class="text-[12px]">${plant.description ? plant.description : "No description found"}</p>
+                        <p class="text-[12px] h-[100px] text-justify">${plant.description ? plant.description : "No description found"}</p>
                         <div class="flex justify-between items-center">
                             <p class="bg-[#CFF0DC] p-3 rounded-full text-[12px]">${plant.category ? plant.category : "No category found"}</p>
                             <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${plant.price ? plant.price : "Price is not available"}</span></p>
@@ -121,7 +121,7 @@ const displayByCategory = (plants) => {
          <div class="bg-white p-4 space-y-4 rounded-lg  ">
                         <img class="max-h-[190px] w-full rounded-lg " src="${plant.image ? plant.image : "No image found"}" alt="">
                         <h2 onclick="loadPlantDetails(${plant.id})" class="text-bold text-xl ">${plant.name ? plant.name : "No name found"}</h2>
-                        <p>${plant.description ? plant.description : "No description found"}</p>
+                        <p class="h-[100px] text-justify">${plant.description ? plant.description : "No description found"}</p>
                         <div class="flex justify-between items-center">
                             <p class="bg-[#CFF0DC] p-3 rounded-full text-sm">${plant.category ? plant.category : "No category found"}</p>
                             <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${plant.price ? plant.price : "Price is not available"}</span></p>
@@ -176,8 +176,8 @@ const displayPlantDetails = (plants) => {
                         <img class="w-full h-[180px] rounded-lg" src="${plants.image}" alt="">
                         <p class="">${plants.category}</p>
                         <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${plants.price}</span></p>
-                        <p class="text-sm">${plants.description}</p>
-                        <div class="modal-action">
+                        <p class="text-sm ">${plants.description}</p>
+                        <div class="modal-action"> 
                             <form method="dialog">
                                 <!-- if there is a button in form, it will close the modal -->
                                 <button class="btn">Close</button>
@@ -193,40 +193,78 @@ const displayPlantDetails = (plants) => {
 
 // 
 
-// const displayAddToCart
-
+//variable for storing updated total
+let currentTotal = parseInt(document.getElementById("total").innerText);
 // load cart details 
 const loadCartDetails = (id) => {
     const url = `https://openapi.programming-hero.com/api/plant/${id}`
 
     fetch(url)
         .then(res => res.json())
-        .then(details => displayAddToCart(details.plants))
+        .then(details => {
+            displayAddToCart(details.plants);
+
+            // get tree price and convert into number
+            const treePrice = parseInt(document.getElementById(`tree-price${details.plants.id}`).innerText);
+
+
+            // add with total
+            currentTotal = currentTotal + treePrice;
+
+            // push to the dom
+            document.getElementById("total").innerText = currentTotal;
+        })
 }
 
 // function for creating add to cart
 const displayAddToCart = (plants) => {
-    console.log(plants)
+
+
     // get add cart container and empty it
     const addToCartContainer = document.getElementById('add-to-cart-container');
-    // addToCartContainer.innerHTML = "";
-    console.log(addToCartContainer)
+
+
     alert(`Doy want to add to cart: ${plants.name}`)
     // create element 
     const addedCart = document.createElement("div");
+    addedCart.setAttribute('id', `added-cart${plants.id}`)
     addedCart.classList.add("flex", "justify-between", "bg-[#CFF0DC]", "rounded-lg", "p-4")
-    console.log(addedCart)
+
     addedCart.innerHTML = `
-           <div>
+     
+                        <div>
                                 <h2>${plants.name}</h2>
-                                <p>${plants.price}</p>
+                                <p id="tree-price${plants.id}">${plants.price}</p>
                             </div>
-                            <h2 class="font-xl"><i class="fa-solid fa-xmark"></i></h2>
+                            <h2 onclick="removeCarts(${plants.id})" class="font-xl"><i class="fa-solid fa-xmark"></i></h2>
      `;
 
     //append
     addToCartContainer.appendChild(addedCart)
 
+
 }
 
+// function for removing cart details 
+const removeCarts = (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`
+
+    fetch(url)
+        .then(res => res.json())
+        .then(details => {
+
+            // get tree price and convert into number
+            const treePrice = parseInt(document.getElementById(`tree-price${details.plants.id}`).innerText);
+
+            // subtract from total
+            currentTotal = currentTotal - treePrice;
+
+            // push to the dom
+            document.getElementById("total").innerText = currentTotal;
+
+            // get add cart container and empty it
+            const addedCart = document.getElementById(`added-cart${details.plants.id}`);
+            addedCart.remove()
+        })
+}
 
