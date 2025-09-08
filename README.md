@@ -54,6 +54,38 @@
 
 #### 4) How does destructuring assignment work in ES6?
 
+### Answer: Destructuring assignment offers a more concise and readable way to extract data compared to traditional property access.
+
+### For Example
+
+### Array Destructuring
+    ### To define the variables that receive unpacked values, We use [] on the left side of assignment operator.
+    Example:
+        
+        const subjects = ['English', 'Bangla', 'Math'];
+        const [firstSub, secondSub, thirdSub] = subjects;
+        console.log(firstSub); // 'English'
+        console.log(thirdSub); // 'Math'
+    The values are assigned based on their position in the array.
+
+### Object Destructuring
+    ### We use {} on the left side to define the variable. Values are assigned to the variable on matching property names and variables can be renamed during destructuring using a colon : . 
+
+    Example:
+        const person = { name: 'Hamim', age: 21 };
+        const { name, age } = person;  
+        console.log(name); // 'Hamim'
+
+        const { name: fullName, age: personAge } = person; // Renaming variables
+        console.log(fullName); // 'Hamim'
+
+### Features
+    ### We can assign default values to variables when the array elements and object properties are undefined;
+    const [a, b = 10] = [5]; // b will be 10
+    const { city, zip = '00000' } = { city: 'Dhaka' }; // zip will be '00000'
+ 
+    ### Destructuring assignment enhances code readability. When dealing with complex data structures or API responses, it reduces boilerplate code required to extract specific values.
+
 #### 5) Explain template literals in ES6. How are they different from string concatenation?
 
  
