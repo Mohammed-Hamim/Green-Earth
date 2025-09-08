@@ -72,7 +72,7 @@ const displayPlants = (plants) => {
         plantCard.innerHTML = `
          <div class="bg-white p-4 space-y-4 rounded-lg  ">
                         <img class="h-[190px] w-full rounded-lg " src="${plant.image ? plant.image : "No image found"}" alt="">
-                        <h2 onclick="loadPlantDetails(${plant.id})" class="text-bold text-[14px] ">${plant.name ? plant.name : "No name found"}</h2>
+                        <h2 onclick="loadPlantDetails(${plant.id})" class="font-bold text-[14px] ">${plant.name ? plant.name : "No name found"}</h2>
                         <p class="text-[12px] h-[100px] text-justify">${plant.description ? plant.description : "No description found"}</p>
                         <div class="flex justify-between items-center">
                             <p class="bg-[#CFF0DC] p-3 rounded-full text-[12px]">${plant.category ? plant.category : "No category found"}</p>
@@ -120,7 +120,7 @@ const displayByCategory = (plants) => {
         plantCard.innerHTML = `
          <div class="bg-white p-4 space-y-4 rounded-lg  ">
                         <img class="max-h-[190px] w-full rounded-lg " src="${plant.image ? plant.image : "No image found"}" alt="">
-                        <h2 onclick="loadPlantDetails(${plant.id})" class="text-bold text-xl ">${plant.name ? plant.name : "No name found"}</h2>
+                        <h2 onclick="loadPlantDetails(${plant.id})" class="text-bold text-[14px] font-bold">${plant.name ? plant.name : "No name found"}</h2>
                         <p class="h-[100px] text-justify">${plant.description ? plant.description : "No description found"}</p>
                         <div class="flex justify-between items-center">
                             <p class="bg-[#CFF0DC] p-3 rounded-full text-sm">${plant.category ? plant.category : "No category found"}</p>
