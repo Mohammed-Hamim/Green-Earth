@@ -78,7 +78,6 @@ const loadPlants = () => {
 // function for displaying all plants
 const displayPlants = (plants) => {
 
-
     // get the plant container and empty it
     const plantContainer = document.getElementById("plant-container");
     plantContainer.innerHTML = "";
@@ -250,9 +249,12 @@ const displayAddToCart = (plants) => {
     addedCart.innerHTML = `
                         <div>
                                 <h2>${plants.name}</h2>
-                                <p id="tree-price${plants.id}">${plants.price}</p>
+                                <p>
+                                 <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                                <span id="tree-price${plants.id}"> ${plants.price}</span>
+                                </p>                            
                             </div>
-                            <h2 onclick="removeCarts(${plants.id})" class="font-xl"><i class="fa-solid fa-xmark"></i></h2>     
+                            <h2 onclick="removeCarts(${plants.id})" class="font-xl"><i class="fa-solid fa-xmark text-red-600 font-bold"></i></h2>     
                             `;
     //append to the parent
     addToCartContainer.appendChild(addedCart)
