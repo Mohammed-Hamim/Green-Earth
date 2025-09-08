@@ -1,3 +1,19 @@
+
+// functionality of spinner state management
+const stateSpinner = (status) => {
+    // console.log(status)
+    if (status == true) {
+        document.getElementById('spinner').classList.remove("hidden");
+        document.getElementById('plant-container').classList.add("hidden");
+
+    } else {
+        document.getElementById('plant-container').classList.remove("hidden");
+        document.getElementById('spinner').classList.add("hidden");
+    }
+}
+
+
+
 /*************Functionality of category list starts here****************/
 // function for loading categories
 const loadCategories = () => {
@@ -26,18 +42,20 @@ const displayCategories = (categories) => {
 
         // append to the categoryContainer
         categoryContainer.appendChild(categoryName);
-
-
     });
 }
 
 loadCategories();
 /*************Functionality of category list ends here****************/
 
+
+
 /*************Functionality of cart container starts here****************/
 // function for loading all plants 
 const loadPlants = () => {
+    stateSpinner(true); // show spinner before data is loaded
     const plantsUrl = "https://openapi.programming-hero.com/api/plants";
+
     fetch(plantsUrl)
         .then(res => res.json())
         .then(data => {
@@ -54,19 +72,19 @@ const loadPlants = () => {
     //Adding active on all tress btn when clicking on it
     const allCategoryBtn = document.querySelector("#all-category-btn");
     allCategoryBtn.classList.add("active");
-
-
 }
 
 
 // function for displaying all plants
 const displayPlants = (plants) => {
-    // displayAddToCart(plants)
+
+
     // get the plant container and empty it
     const plantContainer = document.getElementById("plant-container");
     plantContainer.innerHTML = "";
     // get every plant
     plants.forEach(plant => {
+
         // create element for plant card 
         const plantCard = document.createElement("div");
         plantCard.innerHTML = `
@@ -83,16 +101,19 @@ const displayPlants = (plants) => {
         `;
         // append to the plant card container 
         plantContainer.appendChild(plantCard);
+
     })
-
-
+    stateSpinner(false);// hide spinner after data is loaded
 }
+
+
 loadPlants();
 /*************Functionality of cart container ends here****************/
 
 /*************Functionality of showing plant card according to their category starts here****************/
 // function for loading plants by category
 const loadByCategory = (id) => {
+    stateSpinner(true);// show spinner before data is loaded
     const url = `https://openapi.programming-hero.com/api/category/${id}`
     fetch(url)
         .then(res => res.json())
@@ -100,7 +121,6 @@ const loadByCategory = (id) => {
             removeActive()// remove active class
 
             // select clicked button
-
             const buttonNum = document.querySelector(`#button-${id}`);
             buttonNum.classList.add("active");// add active class
             displayByCategory(data.plants)
@@ -122,7 +142,7 @@ const displayByCategory = (plants) => {
                         <img class="max-h-[190px] w-full rounded-lg " src="${plant.image ? plant.image : "No image found"}" alt="">
                         <h2 onclick="loadPlantDetails(${plant.id})" class="text-bold text-[14px] font-bold">${plant.name ? plant.name : "No name found"}</h2>
                         <p class="h-[100px] text-justify">${plant.description ? plant.description : "No description found"}</p>
-                        <div class="flex justify-between items-center">
+                        <div class="flex justify-between items-center mt-4">
                             <p class="bg-[#CFF0DC] p-3 rounded-full text-sm">${plant.category ? plant.category : "No category found"}</p>
                             <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${plant.price ? plant.price : "Price is not available"}</span></p>
                         </div>
@@ -132,7 +152,7 @@ const displayByCategory = (plants) => {
         // append to the plant card container 
         plantContainer.appendChild(plantCard);
     })
-
+    stateSpinner(false);// hide spinner after data is loaded
 }
 
 // function for removing active color 
@@ -159,17 +179,18 @@ const removeActive = () => {
 //function for loading plant details
 const loadPlantDetails = (id) => {
     const url = `https://openapi.programming-hero.com/api/plant/${id}`
-
     fetch(url)
         .then(res => res.json())
         .then(details => displayPlantDetails(details.plants))
 }
 
-// function for displaying plant details
 
+
+// function for displaying plant details
 const displayPlantDetails = (plants) => {
     //  get the details container 
     const cartDetails = document.getElementById('cart-details');
+
     // create elements
     cartDetails.innerHTML = `    
                      <h2 class="text-xl font-bold">${plants.name}</h2>
@@ -218,41 +239,31 @@ const loadCartDetails = (id) => {
 
 // function for creating add to cart
 const displayAddToCart = (plants) => {
-
-
-    // get add cart container and empty it
+    // get add cart container  
     const addToCartContainer = document.getElementById('add-to-cart-container');
-
-
+    //show relevant alert
     alert(`Doy want to add to cart: ${plants.name}`)
     // create element 
     const addedCart = document.createElement("div");
     addedCart.setAttribute('id', `added-cart${plants.id}`)
     addedCart.classList.add("flex", "justify-between", "bg-[#CFF0DC]", "rounded-lg", "p-4")
-
     addedCart.innerHTML = `
-     
                         <div>
                                 <h2>${plants.name}</h2>
                                 <p id="tree-price${plants.id}">${plants.price}</p>
                             </div>
-                            <h2 onclick="removeCarts(${plants.id})" class="font-xl"><i class="fa-solid fa-xmark"></i></h2>
-     `;
-
-    //append
+                            <h2 onclick="removeCarts(${plants.id})" class="font-xl"><i class="fa-solid fa-xmark"></i></h2>     
+                            `;
+    //append to the parent
     addToCartContainer.appendChild(addedCart)
-
-
 }
 
 // function for removing cart details 
 const removeCarts = (id) => {
     const url = `https://openapi.programming-hero.com/api/plant/${id}`
-
     fetch(url)
         .then(res => res.json())
         .then(details => {
-
             // get tree price and convert into number
             const treePrice = parseInt(document.getElementById(`tree-price${details.plants.id}`).innerText);
 
@@ -267,4 +278,5 @@ const removeCarts = (id) => {
             addedCart.remove()
         })
 }
+
 
