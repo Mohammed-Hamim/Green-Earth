@@ -92,7 +92,7 @@ const displayPlants = (plants) => {
                         <h2 onclick="loadPlantDetails(${plant.id})" class="font-bold text-[14px] ">${plant.name ? plant.name : "No name found"}</h2>
                         <p class="text-[12px] h-[100px] text-justify">${plant.description ? plant.description : "No description found"}</p>
                         <div class="flex justify-between items-center">
-                            <p class="bg-[#CFF0DC] p-3 rounded-full text-[12px]">${plant.category ? plant.category : "No category found"}</p>
+                            <p class="bg-[#CFF0DC] px-4 border-1 border-gray-400 py-2 rounded-full text-[12px]">${plant.category ? plant.category : "No category found"}</p>
                             <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${plant.price ? plant.price : "Price is not available"}</span></p>
                         </div>
                         <button onclick="loadCartDetails(${plant.id})"  class="cart-btn bg-[#15803D] btn rounded-full w-full text-white">Add to Cart</button>
@@ -100,7 +100,6 @@ const displayPlants = (plants) => {
         `;
         // append to the plant card container 
         plantContainer.appendChild(plantCard);
-
     })
     stateSpinner(false);// hide spinner after data is loaded
 }
@@ -142,7 +141,7 @@ const displayByCategory = (plants) => {
                         <h2 onclick="loadPlantDetails(${plant.id})" class="text-bold text-[14px] font-bold">${plant.name ? plant.name : "No name found"}</h2>
                         <p class="h-[100px] text-justify">${plant.description ? plant.description : "No description found"}</p>
                         <div class="flex justify-between items-center mt-4">
-                            <p class="bg-[#CFF0DC] p-3 rounded-full text-sm">${plant.category ? plant.category : "No category found"}</p>
+                            <p class="bg-[#CFF0DC] px-4 border-1 border-gray-400 py-2 rounded-full text-sm">${plant.category ? plant.category : "No category found"}</p>
                             <p class="text-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${plant.price ? plant.price : "Price is not available"}</span></p>
                         </div>
                         <button onclick="loadCartDetails(${plant.id})" class="bg-[#15803D] btn rounded-full w-full text-white">Add to Cart</button>
