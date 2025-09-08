@@ -38,9 +38,8 @@
                     </div>
                     <ul tabindex="0"
                         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <ul class="menu menu-horizontal px-1 gap-5">
+                        <ul class="menu menu-vertical px-1 gap-5">
                             <li class="text-black">About</li>
-
                             <li class="text-black">Gallery</li>
                             <li class="text-black">Plant a Tree</li>
                         </ul>
@@ -85,7 +84,6 @@
 
 
             <div class="md:grid md:grid-cols-12 gap-6 space-y-4 place-items-stretch ">
-
                 <!-- category section -->
                 <div class="md:col-span-2 mb-4 md:mb-0">
                     <h2 class="mb-5 font-bold text-xl">Categories</h2>
@@ -98,14 +96,12 @@
                     </div>
                 </div>
 
-
                 <!-- plants container -->
                 <div id="plant-container" class="col-span-8 gap-5  grid grid-cols-1 md:grid-cols-3">
                     <!-- every plant card will be added dynamically from index.js-65 -->
                 </div>
 
                 <!--show the modal when click on the cart title -->
-                <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
                 <dialog id="my_modal_5" class="modal modal-middle sm:modal-middle">
                     <div id="cart-details" class="modal-box space-y-4">
                         <!-- load dynamically from index.js-171 -->
@@ -115,7 +111,7 @@
                 <div class="col-span-2 add-cart p-4 bg-white place-self-start justify-self-stretch rounded-lg">
                     <h2 class="font-bold text-xl">Your Cart</h2>
                     <div id="add-to-cart-container" class="border-b-2 py-4 space-y-4">
-
+                        <!-- load dynamically -->
                     </div>
                     <div class="flex justify-between items-center">
                         <h2 class="font-bold">Total</h2>
@@ -183,14 +179,14 @@
                     <button class="btn text-[#15803D] bg-[#FACC15] rounded-3xl">Donate Now</button>
                 </div>
             </form>
-
         </section>
     </main>
+    <!-- Footer Section  -->
     <footer class="bg-[#14532D] py-4 text-center">
         <p class="text-white">© 2025 Green Earth. All Rights Reserved.</p>
     </footer>
 
+    <!-- JavaScript -->
     <script src="./script/index.js"></script>
 </body>
-
 </html>
