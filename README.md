@@ -20,6 +20,19 @@
 
 #### 2) What is the difference between map(), forEach(), and filter()? 
 
+### Answer: The differences between them are below:
+    ### 1) map()
+         a) Transform each element in an array and create a new array. 
+         b) Return a new array of the same length as the original. The original array remains unchanged.
+   
+    ### 1) forEach():
+         a)  Iterate over each element in an array. 
+         b)  Does not return a new array or any value.
+   
+    ### 1) filter():
+         a)  Create a new array containing only the elements from the original array that pass a specified condition.
+         b) Return a  new array containing a subset of the original array's elements.The original array remains unchanged.
+
 #### 3) What are arrow functions in ES6?
 
 #### 4) How does destructuring assignment work in ES6?
