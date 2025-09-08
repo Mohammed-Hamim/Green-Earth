@@ -35,6 +35,23 @@
 
 #### 3) What are arrow functions in ES6?
 
+### Answer: Arrow functions are a concise syntax in ES6 for writing function expressions in JavaScript. They offer a shorter way to define functions.
+
+    ### They remove the need for the function keyword and often allow for implicit returns and omission of parentheses for single parameters.
+    JavaScript
+
+    ### Arrow functions do not have their own this context. Instead, they inherit the this value from the scope in which they are defined. 
+
+    ### Arrow functions do not have their own arguments object.
+
+    ### Arrow functions cannot be used with the new keyword to create new instances.
+    
+    ### If the function body consists of a single expression, the return keyword and curly braces can be omitted, and the expression's result will be implicitly returned.
+ 
+
+
+
+
 #### 4) How does destructuring assignment work in ES6?
 
 #### 5) Explain template literals in ES6. How are they different from string concatenation?
